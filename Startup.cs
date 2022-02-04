@@ -9,6 +9,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using InventoryManagementGrid.DBContext;
+using Microsoft.Extensions.Logging;
 
 namespace InventoryManagementGrid
 {
@@ -21,19 +23,30 @@ namespace InventoryManagementGrid
 
         public IConfiguration Configuration { get; }
 
+        public interface ILoggerProvider : IDisposable
+        {
+            ILogger CreateLogger(string categoryName);
+        }
+
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddRazorPages();
 
-            services.AddDbContext<DbContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("MvcMovieContext")));
+            services.AddDbContext<InvGridDbContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("InvGridDbContext")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
 
+            using (IServiceScope scope = app.ApplicationServices.CreateScope())
+            {
+                IServiceProvider services = scope.ServiceProvider;
+
+                Models.TestModel.Init(services);
+            }
 
             if (env.IsDevelopment())
             {
