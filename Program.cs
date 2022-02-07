@@ -10,20 +10,12 @@ using System.Threading.Tasks;
 
 namespace InventoryManagementGrid
 {
-    //WebAssemblyHostBuilder
     public class Program
     {
-        //Microsoft.AspNetCore.Builder.
-
         public static void Main(string[] args)
         {
-
-            ILoggerFactory loggerFactory = new LoggerFactory();
-
-            ILogger logger = loggerFactory.CreateLogger<Program>();
-            logger.LogInformation("This is log message.");
-
             CreateHostBuilder(args).Build().Run();
+
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
@@ -32,6 +24,5 @@ namespace InventoryManagementGrid
                 {
                     webBuilder.UseStartup<Startup>();
                 });
-
     }
 }

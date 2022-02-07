@@ -9,11 +9,11 @@ namespace InventoryManagementGrid.DBContext
 {
     public class InvGridDbContext : DbContext
     {
-        public InvGridDbContext(DbContextOptions<InvGridDbContext> options)
-            : base(options)
+        public InvGridDbContext(DbContextOptions<InvGridDbContext> options) : base(options)
         {
+
         }
 
-        public DbSet<InventoryManagementGrid.Models.TestModel> TestModel { get; set; }
+        public DbSet<InventoryManagementGrid.Models.t_table> t_table { get; set; }
     }
 }

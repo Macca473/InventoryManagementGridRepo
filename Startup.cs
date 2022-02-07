@@ -10,7 +10,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using InventoryManagementGrid.DBContext;
-using Microsoft.Extensions.Logging;
+using System.Diagnostics;
 
 namespace InventoryManagementGrid
 {
@@ -23,14 +23,13 @@ namespace InventoryManagementGrid
 
         public IConfiguration Configuration { get; }
 
-        public interface ILoggerProvider : IDisposable
-        {
-            ILogger CreateLogger(string categoryName);
-        }
-
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
+            Console.WriteLine("Starting App");
+
+
             services.AddRazorPages();
 
             services.AddDbContext<InvGridDbContext>(options =>
@@ -45,7 +44,7 @@ namespace InventoryManagementGrid
             {
                 IServiceProvider services = scope.ServiceProvider;
 
-                Models.TestModel.Init(services);
+                Models.t_table.Init(services);
             }
 
             if (env.IsDevelopment())
