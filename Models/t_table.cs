@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Diagnostics;
+using MySqlConnector;
 
 namespace InventoryManagementGrid.Models
 {
@@ -15,23 +16,29 @@ namespace InventoryManagementGrid.Models
         public int TID { get; set; }
         public string test_var { get; set; }
 
-        public static void Init(IServiceProvider serviceProvider)
-        {
-            using (DBContext.InvGridDbContext context = new DBContext.InvGridDbContext(
-                serviceProvider.GetRequiredService<
-                    DbContextOptions<DBContext.InvGridDbContext>>()))
-            {
-                List<t_table> Tlist = context.t_table.ToList();
+        //public static void Init(IServiceProvider serviceProvider)
+        //{
+        //    using (DBContext.InvGridDbContext context = new DBContext.InvGridDbContext(
+        //        serviceProvider.GetRequiredService<
+        //            DbContextOptions<DBContext.InvGridDbContext>>()))
+        //    {
+        //        if (context.t_table.Any())
+        //        {
+        //            Console.WriteLine("t_tableExists");
+        //        }
 
-                Console.WriteLine("Finding stuff");
+        //        List<t_table> Tlist = context.t_table.ToList();
 
-                foreach(t_table TI in Tlist)
-                {
-                    Console.WriteLine(TI.TID + " " + TI.test_var);
-                }
-            }
-        }
+        //        Console.WriteLine("Finding stuff");
 
+        //        foreach (t_table TI in Tlist)
+        //        {
+        //            Console.WriteLine(TI.TID + " " + TI.test_var);
+        //        }
+        //    }
+        //}
+
+        
         public t_table()
         {
             //Init();

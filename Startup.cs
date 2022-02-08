@@ -11,6 +11,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using InventoryManagementGrid.DBContext;
 using System.Diagnostics;
+using MySqlConnector;
 
 namespace InventoryManagementGrid
 {
@@ -32,20 +33,32 @@ namespace InventoryManagementGrid
 
             services.AddRazorPages();
 
-            services.AddDbContext<InvGridDbContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("InvGridDbContext")));
+            services.AddMvc();
+            services.Add(
+                new ServiceDescriptor(typeof(InvGridDbContext), new InvGridDbContext(Configuration.GetConnectionString("InvGridDbContext"))));
+
+            //services.AddTransient<MySqlConnection>(x => new MySqlConnection(Configuration["ConnectionStrings:InvGridDbContext"]));
+
+            //using var connection = new MySqlConnection(yourConnectionString);
+
+            //services.AddDbContext<InvGridDbContext>(options =>
+            //options.UseSqlServer(Configuration.GetConnectionString("InvGridDbContext")));
         }
+
+
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
 
-            using (IServiceScope scope = app.ApplicationServices.CreateScope())
-            {
-                IServiceProvider services = scope.ServiceProvider;
+            //using (IServiceScope scope = app.ApplicationServices.CreateScope())
+            //{
+            //    IServiceProvider services = scope.ServiceProvider;
 
-                Models.t_table.Init(services);
-            }
+            //    Models.t_table.Init(services);
+            //}
+
+            InvGridDbContext invGrid = new InvGridDbContext();
 
             if (env.IsDevelopment())
             {
