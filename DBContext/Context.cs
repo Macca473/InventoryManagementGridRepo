@@ -5,10 +5,12 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using InventoryManagementGrid.Models;
 using MySqlConnector;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.AspNetCore.Http;
 
 namespace InventoryManagementGrid.DBContext
 {
-    public class InvGridDbContext
+    public class InvGridDbContext: DbContext
     {
         //public InvGridDbContext(DbContextOptions<InvGridDbContext> options) : base(options)
         //{
@@ -23,62 +25,12 @@ namespace InventoryManagementGrid.DBContext
         {
             this.ConnectionString = connectionString;
 
-            Console.WriteLine("connectionString " + connectionString);
+            Console.WriteLine("Running InvGridDbContext: " + ConnectionString);
         }
 
-        public InvGridDbContext()
+        public MySqlConnection GetConnection()
         {
-            GetAllAlbums();
+            return new MySqlConnection(this.ConnectionString);
         }
-
-        private MySqlConnection GetConnection()
-        {
-            return new MySqlConnection(ConnectionString);
-        }
-
-        // /////////////////////////////////////
-
-        public List<t_table> GetAllAlbums()
-        {
-            Console.WriteLine("Running GetAllAlbums");
-
-                List<t_table> list = new List<t_table>();
-
-            using (MySqlConnection conn = GetConnection())
-            {
-                try
-                {
-                    conn.Open();
-                    //MySqlCommand cmd = new MySqlCommand("select * from t_table", conn);
-
-                    //using (var reader = cmd.ExecuteReader())
-                    //{
-                    //    while (reader.Read())
-                    //    {
-                    //        list.Add(new t_table()
-                    //        {
-                    //            TID = Convert.ToInt32(reader["TID"]),
-                    //            test_var = reader["test_var"].ToString(),
-                    //        });
-                    //    }
-                    //}
-                }
-                catch (MySqlConnector.MySqlException e)
-                {
-                    Console.WriteLine(e);
-                }
-
-            }
-
-            foreach (t_table TT in list)
-            {
-                Console.WriteLine(TT.TID + ": " + TT.test_var);
-            }
-
-            return list;
-        }
-
     }
-
-    
 }

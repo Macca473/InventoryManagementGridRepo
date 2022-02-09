@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using InventoryManagementGrid.DBContext;
+using InventoryManagementGrid.Models;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 using System;
@@ -19,6 +21,16 @@ namespace InventoryManagementGrid.Pages
 
         public void OnGet()
         {
+
+            InventoryManagementGrid.Controllers.HomeController HomeController = new();
+
+            ActionResult<List<t_table>> actionResult = HomeController.GetTestTable();
+
+            List<t_table> TList = actionResult.Value;
+
+            Console.WriteLine("INX: " + TList[1].test_var);
+
+
 
         }
     }

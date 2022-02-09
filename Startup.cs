@@ -34,15 +34,7 @@ namespace InventoryManagementGrid
             services.AddRazorPages();
 
             services.AddMvc();
-            services.Add(
-                new ServiceDescriptor(typeof(InvGridDbContext), new InvGridDbContext(Configuration.GetConnectionString("InvGridDbContext"))));
-
-            //services.AddTransient<MySqlConnection>(x => new MySqlConnection(Configuration["ConnectionStrings:InvGridDbContext"]));
-
-            //using var connection = new MySqlConnection(yourConnectionString);
-
-            //services.AddDbContext<InvGridDbContext>(options =>
-            //options.UseSqlServer(Configuration.GetConnectionString("InvGridDbContext")));
+            services.Add(new ServiceDescriptor(typeof(InvGridDbContext), new InvGridDbContext(Configuration.GetConnectionString("InvGridDbContext"))));
         }
 
 
@@ -57,8 +49,6 @@ namespace InventoryManagementGrid
 
             //    Models.t_table.Init(services);
             //}
-
-            InvGridDbContext invGrid = new InvGridDbContext();
 
             if (env.IsDevelopment())
             {
