@@ -33,8 +33,15 @@ namespace InventoryManagementGrid
 
             services.AddRazorPages();
 
-            services.AddMvc();
+            //services.AddDbContext<InvGridDbContext>(x => new InvGridDbContext(Configuration.GetConnectionString("InvGridDbContext")));
+
             services.Add(new ServiceDescriptor(typeof(InvGridDbContext), new InvGridDbContext(Configuration.GetConnectionString("InvGridDbContext"))));
+
+            services.AddMvc();
+
+            //services.AddTransient<InvGridDbContext>(x => new InvGridDbContext(Configuration.GetConnectionString("InvGridDbContext")));
+
+
         }
 
 

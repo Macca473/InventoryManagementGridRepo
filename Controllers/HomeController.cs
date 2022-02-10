@@ -12,30 +12,6 @@ namespace InventoryManagementGrid.Controllers
     public class HomeController : Controller
     {
 
-        public ActionResult<List<t_table>> GetTestTable()
-        {
-
-            Console.WriteLine("running GetTestTable");
-
-            InvGridDbContext _InvGridDbContext = new InvGridDbContext("null");
-
-            Console.WriteLine("GetTestTable: " + _InvGridDbContext.ConnectionString);
-
-            try
-            {
-                _InvGridDbContext = (InvGridDbContext)HttpContext.RequestServices.GetService(typeof(InvGridDbContext));
-
-            }
-            catch (System.NullReferenceException x)
-            {
-                Console.WriteLine(x);
-            }
-
-            List<t_table> TList = GetTTable(_InvGridDbContext.GetConnection());
-
-            return View(TList);
-        }
-
         public List<t_table> GetTTable(MySqlConnection conn)
         {
             Console.WriteLine("Running GetTTable");

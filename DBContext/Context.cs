@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Microsoft.Extensions.Configuration;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
@@ -10,7 +11,7 @@ using Microsoft.AspNetCore.Http;
 
 namespace InventoryManagementGrid.DBContext
 {
-    public class InvGridDbContext: DbContext
+    public class InvGridDbContext : DbContext
     {
         //public InvGridDbContext(DbContextOptions<InvGridDbContext> options) : base(options)
         //{

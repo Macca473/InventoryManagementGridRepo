@@ -12,6 +12,9 @@ namespace InventoryManagementGrid.Pages
 {
     public class IndexModel : PageModel
     {
+        [BindProperty]
+        public List<t_table> TList { get; set; }
+
         private readonly ILogger<IndexModel> _logger;
 
         public IndexModel(ILogger<IndexModel> logger)
@@ -19,19 +22,40 @@ namespace InventoryManagementGrid.Pages
             _logger = logger;
         }
 
-        public void OnGet()
+        public IActionResult OnGet()
         {
+            Console.WriteLine("running OnGet");
 
-            InventoryManagementGrid.Controllers.HomeController HomeController = new();
+            InvGridDbContext _InvGridDbContext = (InvGridDbContext)HttpContext.RequestServices.GetService(typeof(InvGridDbContext));
 
-            ActionResult<List<t_table>> actionResult = HomeController.GetTestTable();
+            Controllers.HomeController HomeController = new();
 
-            List<t_table> TList = actionResult.Value;
+            if (TList == null)
+            {
+                TList = HomeController.GetTTable(_InvGridDbContext.GetConnection());
+            }
 
-            Console.WriteLine("INX: " + TList[1].test_var);
 
+            Console.WriteLine(TList[0].test_var);
 
+            //List<t_table> TList = actionResult.
 
+            foreach (t_table TT in TList)
+            {
+                Console.WriteLine("INX: " + TT.TID + " " + TT.test_var);
+            }
+
+            //ViewData["TList"] = TList;
+
+            //if (!ModelState.IsValid)
+            //{
+                return Page();
+            //}
+
+            //_context.Customer.Add(Customer);
+            //await _context.SaveChangesAsync();
+
+            //return RedirectToPage("./Index");
         }
     }
 }
