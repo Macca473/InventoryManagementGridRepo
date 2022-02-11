@@ -14,8 +14,6 @@ namespace InventoryManagementGrid.Controllers
 
         public List<t_table> GetTTable(MySqlConnection conn)
         {
-            Console.WriteLine("Running GetTTable");
-
             List<t_table> list = new List<t_table>();
 
                 try
@@ -40,8 +38,29 @@ namespace InventoryManagementGrid.Controllers
                 {
                     Console.WriteLine(e.InnerException + " " + e.SqlState);
                 }
+            conn.Close();
 
             return list;
+        }
+
+        public void PutTTable(MySqlConnection conn, string? inpst)
+        {
+            List<t_table> list = new List<t_table>();
+
+            if(inpst != null)
+            {
+                try
+                {
+                    conn.Open();
+
+                    MySqlCommand cmd = new MySqlCommand($"INSERT INTO t_table (test_var) VALUES ({ inpst });", conn);
+                }
+                catch (MySqlException e)
+                {
+                    Console.WriteLine(e.InnerException + " " + e.SqlState);
+                }
+            }
+            conn.Close();
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using InventoryManagementGrid.DBContext;
 using InventoryManagementGrid.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
@@ -14,6 +15,8 @@ namespace InventoryManagementGrid.Pages
     {
         [BindProperty]
         public List<t_table> TList { get; set; }
+        [BindProperty]
+        public string Inpstring { get; set; }
 
         private readonly ILogger<IndexModel> _logger;
 
@@ -24,38 +27,40 @@ namespace InventoryManagementGrid.Pages
 
         public IActionResult OnGet()
         {
-            Console.WriteLine("running OnGet");
+            GetTestVals();
 
+            return Page();
+        }
+
+        //public IActionResult OnPost()
+        //{
+        //    Inpstring = Request.Form["Inpstring"];
+
+        //    @ViewData["InpString"] = Inpstring;
+
+        //    GetTestVals();
+
+        //    return Page();
+        //}
+
+        public object Dothing()
+        {
+            Console.WriteLine("Dothing: " + Inpstring);
+
+            GetTestVals();
+
+            return null;
+        }
+
+        
+
+        public void GetTestVals()
+        {
             InvGridDbContext _InvGridDbContext = (InvGridDbContext)HttpContext.RequestServices.GetService(typeof(InvGridDbContext));
 
             Controllers.HomeController HomeController = new();
 
-            if (TList == null)
-            {
-                TList = HomeController.GetTTable(_InvGridDbContext.GetConnection());
-            }
-
-
-            Console.WriteLine(TList[0].test_var);
-
-            //List<t_table> TList = actionResult.
-
-            foreach (t_table TT in TList)
-            {
-                Console.WriteLine("INX: " + TT.TID + " " + TT.test_var);
-            }
-
-            //ViewData["TList"] = TList;
-
-            //if (!ModelState.IsValid)
-            //{
-                return Page();
-            //}
-
-            //_context.Customer.Add(Customer);
-            //await _context.SaveChangesAsync();
-
-            //return RedirectToPage("./Index");
+            TList = HomeController.GetTTable(_InvGridDbContext.GetConnection());
         }
     }
 }
