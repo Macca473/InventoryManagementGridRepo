@@ -7,10 +7,9 @@
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-    <form method="post" >
-        <input asp-for="Inpstring" type="text" name="Inpstring" id="inpstring"/>
-        @*<input type="submit" value="Submit" onclick=@Model.InpValMeth(inpstring)/>*@
-         @*onchange="@Model.Dothing()"*@
+    <form method="post">
+        <input id="inpstring" asp-for="Inpstring" type="text" name="Inpstring"/>
+        <input type="submit" value="Submit" onclick=@Model.Dothing() />
     </form>
     @foreach (var VAL in Model.TList)
     {
