@@ -52,8 +52,6 @@ namespace InventoryManagementGrid.Pages
             return null;
         }
 
-        
-
         public void GetTestVals()
         {
             InvGridDbContext _InvGridDbContext = (InvGridDbContext)HttpContext.RequestServices.GetService(typeof(InvGridDbContext));
