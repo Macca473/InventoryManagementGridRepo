@@ -18,16 +18,16 @@ namespace InventoryManagementGrid.Controllers
 
         public char FindLetter(int num)
         {
-            string Letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            string letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
-            int LL = Letters.Length;
+            int LL = letters.Length;
 
             if (num > LL)
             {
                 
             }
 
-            return Letters[0];
+            return letters[0];
         }
     }
 
