@@ -8,26 +8,28 @@ namespace InventoryManagementGrid.Controllers
 {
     public class CreateGridMx : Controller
     {
-
-        public void CreateGridMxList()
+        public class Sq
         {
-            string Letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-
-            char thing = Letters[0];
+            public int width { get; set; }
+            public int depth { get; set; }
+            public bool isgoal { get; set; }
+            public bool isfilled { get; set; }
+            public int goaldis { get; set; }
         }
 
-        public char FindLetter(int num)
+        static List<string> MakeGrid(int width, int depth)
         {
-            string letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            List<string> GridLocs = new List<string>();
 
-            int LL = letters.Length;
-
-            if (num > LL)
+            for (int wit = 0; wit < width; wit++)
             {
-                
-            }
 
-            return letters[0];
+                for (int dep = 0; dep < width; dep++)
+                {
+                    GridLocs.Add("W" + wit + ":D" + dep);
+                }
+            }
+            return GridLocs;
         }
     }
 
