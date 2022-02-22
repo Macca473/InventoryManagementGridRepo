@@ -16,6 +16,8 @@ namespace InventoryManagementGrid.Controllers
             public bool isfilled { get; set; } = false;
             public int goaldis { get; set; } = 0;
 
+            public bool Path { get; set; } = false;
+
             public Sq(int w, int d)
             {
                 width = w;
