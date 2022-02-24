@@ -25,6 +25,8 @@ namespace InventoryManagementGrid.Controllers
             }
         }
 
+        public static List<List<Sq>> SqList { get; set; }
+
         static void Inptwn(Sq S1, Sq S2)
         {
             Sq twn1 = new Sq(S1.width, S2.depth);
