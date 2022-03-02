@@ -27,7 +27,9 @@ namespace InventoryManagementGrid.Pages
 
         public IActionResult OnGet()
         {
-            GetTestVals();
+            //GetTestVals();
+
+
 
             return Page();
         }
@@ -58,7 +60,13 @@ namespace InventoryManagementGrid.Pages
 
             Controllers.HomeController HomeController = new();
 
+            Controllers.GridController GridController = new();
+
+            HomeController.PutTTable(_InvGridDbContext.GetConnection(), Inpstring);
+
             TList = HomeController.GetTTable(_InvGridDbContext.GetConnection());
+
+            //GridController.MakeGrid(_InvGridDbContext.GetConnection(),10);
         }
     }
 }
