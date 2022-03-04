@@ -1,19 +1,29 @@
 ﻿@page
-@model InventoryManagementGrid.Index.Index.IndexModel
+@model InventoryManagementGrid.Index.IndexModel
 @{
     ViewData["Title"] = "Home page";
 }
+<div class="MainCont">
 
-<div class="text-center">
-    <form method="post">
-        <input id="inpstring" asp-for="Inpstring" type="text" name="Inpstring"/>
-        <input type="submit" value="Submit" onclick=@Model.Dothing() />
-    </form>
-    @foreach (var VAL in Model.TList)
-    {
-        <p>@VAL.test_var</p>
-    }
-    <h2>@Model.Inpstring</h2>
+    @await Component.InvokeAsync("LSModel")
+
+    <div class="MainleftDiv">
+        <component type=""/>
+    </div>
+    <div class="MainMidDiv">
+        <form method="post">
+            <input id="inpstring" asp-for="Inpstring" type="text" name="Inpstring" />
+            <input type="submit" value="Submit" onclick=@Model.Dothing() />
+        </form>
+        @foreach (var VAL in Model.TList)
+        {
+            <p>@VAL.test_var</p>
+        }
+        <h2>@Model.Inpstring</h2>
 
 
+    </div>
+    <div class="MainRightDiv">
+
+    </div>
 </div>

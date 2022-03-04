@@ -41,7 +41,7 @@ namespace InventoryManagementGrid
                 .AddRazorPagesOptions(options =>
                 {
                     //options.AllowAreas = true;
-                    options.Conventions.AddAreaPageRoute("Index", "/Index/Index", "/Index/Index");
+                    options.Conventions.AddAreaPageRoute("Index", "/Index", "./Index");
                 });
 
             //services.AddTransient<InvGridDbContext>(x => new InvGridDbContext(Configuration.GetConnectionString("InvGridDbContext")));
