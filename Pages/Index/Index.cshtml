@@ -5,22 +5,26 @@
 }
 <div class="MainCont">
 
-    @await Component.InvokeAsync("LSModel")
-
     <div class="MainleftDiv">
-        <component type=""/>
+        @*@await Html.PartialAsync("~/Pages/LeftSide/LeftSide.cshtml", )*@
+        <partial name="~/Pages/LeftSide/LeftSide.cshtml" model="Model"/>
     </div>
     <div class="MainMidDiv">
-        <form method="post">
+        @*<form method="post">
             <input id="inpstring" asp-for="Inpstring" type="text" name="Inpstring" />
             <input type="submit" value="Submit" onclick=@Model.Dothing() />
         </form>
         @foreach (var VAL in Model.TList)
         {
             <p>@VAL.test_var</p>
-        }
-        <h2>@Model.Inpstring</h2>
-
+        }*@
+        <div class="GridPerimeter">
+            <div class="GridCont">
+                <div class="Square"></div>
+                <p>hduighduitghiodtgifthiofjhiojiftjoubxdhrvuidgrugbcnog</p>
+            </div>
+        </div>
+        
 
     </div>
     <div class="MainRightDiv">

@@ -18,6 +18,12 @@ namespace InventoryManagementGrid.Index
         [BindProperty]
         public string Inpstring { get; set; }
 
+        public int TMPD { get; set; } = 10;
+
+        public int TMPW { get; set; } = 10;
+
+        public string TString { get; set; } = "TestString";
+
         private readonly ILogger<IndexModel> _logger;
 
         public IndexModel(ILogger<IndexModel> logger)
@@ -28,8 +34,6 @@ namespace InventoryManagementGrid.Index
         public IActionResult OnGet()
         {
             //GetTestVals();
-
-
 
             return Page();
         }
