@@ -20,9 +20,10 @@
         }*@
         <div class="GridPerimeter">
             <div class="GridCont" style="grid-template-columns:@Model.ColumnStrings;">
-                @for (int inx = 0; inx < Model.TMPD; inx++)
+                @for (int inx = 0; inx < Model.Grid.Count; inx++)
                 {
-                    <partial name="~/Pages/Square/Square.cshtml" model="Model.Grid[inx]" />
+                    @*<partial name="~/Pages/Square/Square.cshtml" model="Model.Grid[inx] as InventoryManagementGrid.Models.Sq" />*@
+                    <p>@Model.Grid[inx].DW</p>
                 }
             </div>
         </div>

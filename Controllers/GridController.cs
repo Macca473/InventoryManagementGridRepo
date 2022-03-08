@@ -27,12 +27,19 @@ namespace InventoryManagementGrid.Controllers
                     {
                         while (reader.Read())
                         {
+                            long tmpItemID = 0;
+
+                            if (!(reader["item_id"] is DBNull))
+                            {
+                                tmpItemID = Convert.ToInt64(reader["item_id"]);
+                            }
+
                             Grid.Add(new Sq(Convert.ToInt32(reader["depth"]), Convert.ToInt32(reader["width"]))
                             {
-                                ItemID = Convert.ToUInt32(reader["item_id"]),
-                                isblocked = (bool)reader["isblocked"],
-                                iskeepclear = (bool)reader["iskeepclear"],
-                            });;
+                                ItemID = tmpItemID,
+                                isblocked = Convert.ToBoolean(reader["isblocked"]),
+                                iskeepclear = Convert.ToBoolean(reader["iskeepclear"]),
+                            });
                         }
                     }
                 }
