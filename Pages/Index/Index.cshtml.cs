@@ -17,10 +17,25 @@ namespace InventoryManagementGrid.Index
         public List<t_table> TList { get; set; }
         [BindProperty]
         public string Inpstring { get; set; }
-
+        [BindProperty]
+        public List<Sq> Grid { get; set; }
         public int TMPD { get; set; } = 10;
 
         public int TMPW { get; set; } = 10;
+
+        public string ColumnStrings { get; set; }
+
+        public void DefColumnStrings()
+        {
+            string ToReturn = "";
+
+            for(int inx = 0; inx < TMPW; inx++)
+            {
+                ToReturn += " auto";
+            }
+
+            ColumnStrings = ToReturn;
+        }
 
         public string TString { get; set; } = "TestString";
 
@@ -34,6 +49,10 @@ namespace InventoryManagementGrid.Index
         public IActionResult OnGet()
         {
             //GetTestVals();
+
+            DefColumnStrings();
+
+            LoadGrid();
 
             return Page();
         }
@@ -58,19 +77,28 @@ namespace InventoryManagementGrid.Index
             return null;
         }
 
+        public void LoadGrid()
+        {
+            InvGridDbContext _InvGridDbContext = (InvGridDbContext)HttpContext.RequestServices.GetService(typeof(InvGridDbContext));
+
+            Controllers.GridController GridController = new();
+
+            Grid = GridController.GetGrid(_InvGridDbContext.GetConnection());
+        }
+
         public void GetTestVals()
         {
             InvGridDbContext _InvGridDbContext = (InvGridDbContext)HttpContext.RequestServices.GetService(typeof(InvGridDbContext));
 
             Controllers.HomeController HomeController = new();
 
-            Controllers.GridController GridController = new();
-
             HomeController.PutTTable(_InvGridDbContext.GetConnection(), Inpstring);
 
             TList = HomeController.GetTTable(_InvGridDbContext.GetConnection());
 
-            //GridController.MakeGrid(_InvGridDbContext.GetConnection(),10);
+            //GridController.MakeGrid(_InvGridDbContext.GetConnection(), 10);
+
+            
         }
     }
 }

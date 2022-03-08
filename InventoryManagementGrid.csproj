@@ -5,6 +5,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="SVGS\**" />
+    <Content Remove="SVGS\**" />
+    <EmbeddedResource Remove="SVGS\**" />
+    <None Remove="SVGS\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Include="Models\t_table.cs" />
   </ItemGroup>
 

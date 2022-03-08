@@ -22,10 +22,10 @@ namespace InventoryManagementGrid.Models
         public bool isgoal { get; set; } = false;
         public bool isfilled { get; set; } = false;
         public long ItemID { get; set; }
-        public int goaldis { get; set; } = 0;
-        public bool isblocked { get; set; } = false;
+        public bool isblocked { get; set; }
         public bool istobemoved { get; set; } = false;
         public bool iscurrPath { get; set; } = false;
+        public bool iskeepclear { get; set; }
 
         public Sq(int d, int w)
         {

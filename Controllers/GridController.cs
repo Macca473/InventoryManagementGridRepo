@@ -13,25 +13,26 @@ namespace InventoryManagementGrid.Controllers
     public class GridController : Controller
     {
 
-        public List<t_table> GetTTable(MySqlConnection conn)
+        public List<Sq> GetGrid(MySqlConnection conn)
         {
-            List<t_table> list = new List<t_table>();
+            List<Sq> Grid = new List<Sq>();
 
                 try
                 {
                     conn.Open();
 
-                    MySqlCommand cmd = new MySqlCommand("select * from t_table", conn);
+                    MySqlCommand cmd = new MySqlCommand("select * from grids", conn);
 
                     using (var reader = cmd.ExecuteReader())
                     {
                         while (reader.Read())
                         {
-                            list.Add(new t_table()
+                            Grid.Add(new Sq(Convert.ToInt32(reader["depth"]), Convert.ToInt32(reader["width"]))
                             {
-                                TID = Convert.ToInt32(reader["TID"]),
-                                test_var = reader["test_var"].ToString(),
-                            });
+                                ItemID = Convert.ToUInt32(reader["item_id"]),
+                                isblocked = (bool)reader["isblocked"],
+                                iskeepclear = (bool)reader["iskeepclear"],
+                            });;
                         }
                     }
                 }
@@ -41,7 +42,7 @@ namespace InventoryManagementGrid.Controllers
                 }
             conn.Close();
 
-            return list;
+            return Grid;
         }
 
         public void MakeGrid(MySqlConnection conn, int? Size)

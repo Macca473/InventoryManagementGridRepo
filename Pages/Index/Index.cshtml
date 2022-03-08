@@ -19,9 +19,11 @@
             <p>@VAL.test_var</p>
         }*@
         <div class="GridPerimeter">
-            <div class="GridCont">
-                <div class="Square"></div>
-                <p>hduighduitghiodtgifthiofjhiojiftjoubxdhrvuidgrugbcnog</p>
+            <div class="GridCont" style="grid-template-columns:@Model.ColumnStrings;">
+                @for (int inx = 0; inx < Model.TMPD; inx++)
+                {
+                    <partial name="~/Pages/Square/Square.cshtml" model="Model.Grid[inx]" />
+                }
             </div>
         </div>
         
