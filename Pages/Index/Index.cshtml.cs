@@ -18,15 +18,14 @@ namespace InventoryManagementGrid.Index
         [BindProperty]
         public string Inpstring { get; set; }
         [BindProperty]
-        public List<Sq> Grid { get; set; }
-        public int TMPD { get; set; } = 10;
-
-        public int TMPW { get; set; } = 10;
+        public List<Sq> Grid { get; set; } = new List<Sq>() {new Sq(0,0)};
 
         public string ColumnStrings { get; set; }
 
         public void DefColumnStrings()
         {
+            int TMPW = Grid.Last().width;
+
             string ToReturn = "";
 
             for(int inx = 0; inx < TMPW; inx++)
@@ -50,9 +49,9 @@ namespace InventoryManagementGrid.Index
         {
             //GetTestVals();
 
-            DefColumnStrings();
+            //LoadGrid();
 
-            LoadGrid();
+            DefColumnStrings();
 
             return Page();
         }
