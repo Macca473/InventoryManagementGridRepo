@@ -20,16 +20,13 @@
         }*@
         <div class="GridPerimeter">
             <div class="GridCont" style="grid-template-columns:@Model.ColumnStrings;">
-                @foreach (InventoryManagementGrid.Models.Sq TSq in Model.Grid)
-                {
-                    <partial name="~/Pages/Square/Square.cshtml" model="TSq" view-data="ViewData" />
-                    @*@await Html.PartialAsync("~/Pages/Square/Square.cshtml", Model.Grid[inx], new ViewDataDictionary(ViewData) { { "index", inx } })*@
-                    @*<p>@Model.Grid[inx].DW</p>*@
-                }
-                @*@for (int inx = 0; inx < Model.Grid.Count; inx++)
-        {
 
-        }*@
+                @*@await Html.PartialAsync("~/Pages/Square/Square.cshtml", Model.Grid[0]);*@
+
+                @for (int inx = 0; inx < Model.Grid.Count; inx++)
+                {
+                    <partial name="~/Pages/Square/Square.cshtml" model="@Model.Grid[inx]" />
+                }
             </div>
         </div>
         

@@ -18,13 +18,13 @@ namespace InventoryManagementGrid.Index
         [BindProperty]
         public string Inpstring { get; set; }
         [BindProperty]
-        public List<Sq> Grid { get; set; } = new List<Sq>() {new Sq(0,0)};
+        public List<Sq> Grid { get; set; } = new List<Sq>();
 
         public string ColumnStrings { get; set; }
 
         public void DefColumnStrings()
         {
-            int TMPW = Grid.Last().width;
+            int TMPW = Grid.Last().width + 1;
 
             string ToReturn = "";
 
@@ -47,9 +47,9 @@ namespace InventoryManagementGrid.Index
 
         public IActionResult OnGet()
         {
-            //GetTestVals();
+            GetTestVals();
 
-            //LoadGrid();
+            LoadGrid();
 
             DefColumnStrings();
 
@@ -96,8 +96,6 @@ namespace InventoryManagementGrid.Index
             TList = HomeController.GetTTable(_InvGridDbContext.GetConnection());
 
             //GridController.MakeGrid(_InvGridDbContext.GetConnection(), 10);
-
-            
         }
     }
 }
