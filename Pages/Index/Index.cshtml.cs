@@ -47,11 +47,11 @@ namespace InventoryManagementGrid.Index
 
         public IActionResult OnGet()
         {
-            GetTestVals();
+            //GetTestVals();
 
             LoadGrid();
 
-            DefColumnStrings();
+            //DefColumnStrings();
 
             return Page();
         }
@@ -82,6 +82,8 @@ namespace InventoryManagementGrid.Index
 
             Controllers.GridController GridController = new();
 
+            GridController.MakeGrid(_InvGridDbContext.GetConnection(), 10);
+
             Grid = GridController.GetGrid(_InvGridDbContext.GetConnection());
         }
 
@@ -94,8 +96,6 @@ namespace InventoryManagementGrid.Index
             HomeController.PutTTable(_InvGridDbContext.GetConnection(), Inpstring);
 
             TList = HomeController.GetTTable(_InvGridDbContext.GetConnection());
-
-            //GridController.MakeGrid(_InvGridDbContext.GetConnection(), 10);
         }
     }
 }

@@ -23,6 +23,11 @@ namespace InventoryManagementGrid.Controllers.PathFindngUtil
                 {
                     Sq thissq = new Sq(dep, wit);
 
+                    if(Addiskeepclears(thissq, depth, width))
+                    {
+                        thissq.iskeepclear = true;
+                    }
+
                     //WidthLocs.Add(thissq);
 
                     //Console.WriteLine(thissq.depth + " " + thissq.width);
@@ -32,6 +37,18 @@ namespace InventoryManagementGrid.Controllers.PathFindngUtil
                 
             }
             return GridLocs;
+        }
+
+        public static bool Addiskeepclears(Sq tSq, int D, int W)
+        {
+            if (tSq.width == 0 || tSq.width == W || tSq.depth == 0 || tSq.depth == D)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }
