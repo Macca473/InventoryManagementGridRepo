@@ -70,26 +70,33 @@ namespace InventoryManagementGrid.Controllers
 
                     string InsLstStr = "";
 
+
+
                     for (int inx = 0; inx < GList.Count; inx++)
                     {
-                        if (inx != GList.Count)
-                        {
-                            InsLstStr += $"({GList[inx].depth},{GList[inx].width},{Currtime}),";
-                        }
-                        else
+                        if (inx == GList.Count - 1)
                         {
                             InsLstStr += $"({GList[inx].depth},{GList[inx].width},{Currtime});";
                         }
+                        else
+                        {
+                            InsLstStr += $"({GList[inx].depth},{GList[inx].width},{Currtime}),";
+                        }
                     }
 
-                    MySqlCommand cmd = new MySqlCommand($"INSERT INTO gridinv_db.grids (`depth`,`width`,`age`) VALUES {InsLstStr}", conn);
+                    string Query = $"INSERT INTO gridinv_db.grids (`depth`,`width`,`age`) VALUES {InsLstStr}";
+
+                    //Console.WriteLine("Putting Grid: " + Query + " GList.Count:" + GList.Count);
+
+                    MySqlCommand cmd = new MySqlCommand(Query , conn);
+
                     cmd.ExecuteNonQuery();
 
 
                 }
                 catch (MySqlException e)
                 {
-                    Console.WriteLine(e.InnerException + " " + e.SqlState);
+                    Console.WriteLine("Exception: " + e.InnerException + " Sql State:" + e.SqlState);
                 }
             }
             conn.Close();

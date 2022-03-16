@@ -49,6 +49,8 @@ namespace InventoryManagementGrid.Index
         {
             //GetTestVals();
 
+            Console.WriteLine("Getting");
+
             LoadGrid();
 
             //DefColumnStrings();
@@ -82,7 +84,7 @@ namespace InventoryManagementGrid.Index
 
             Controllers.GridController GridController = new();
 
-            GridController.MakeGrid(_InvGridDbContext.GetConnection(), 10);
+            //GridController.MakeGrid(_InvGridDbContext.GetConnection(), 10);
 
             Grid = GridController.GetGrid(_InvGridDbContext.GetConnection());
         }
