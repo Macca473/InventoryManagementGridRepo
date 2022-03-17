@@ -53,7 +53,7 @@ namespace InventoryManagementGrid.Index
 
             LoadGrid();
 
-            //DefColumnStrings();
+            DefColumnStrings();
 
             return Page();
         }
@@ -69,13 +69,11 @@ namespace InventoryManagementGrid.Index
         //    return Page();
         //}
 
-        public object Dothing()
+        public void Dothing()
         {
             Console.WriteLine("Dothing: " + Inpstring);
 
-            GetTestVals();
-
-            return null;
+            //GetTestVals();
         }
 
         public void LoadGrid()

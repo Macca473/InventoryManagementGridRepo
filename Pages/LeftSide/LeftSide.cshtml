@@ -3,5 +3,8 @@
     ViewData["Title"] = "Home page";
 }
 <div>
-    <p>@Model.TString</p>
+    <form method="post">
+            <input id="inpstring" asp-for="Inpstring" type="text" name="Inpstring" />
+            <button type="submit" value="Submit" onclick="Dothing"/>
+    </form>
 </div>
