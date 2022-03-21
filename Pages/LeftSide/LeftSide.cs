@@ -9,53 +9,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace InventoryManagementGrid.Index
+namespace InventoryManagementGrid.LeftSide
 {
-    public class IndexModel : PageModel
+    public class LeftSideModel : PartialViewResult
     {
         [BindProperty]
         public List<t_table> TList { get; set; }
         [BindProperty]
         public string Inpstring { get; set; }
         [BindProperty]
-        public List<Sq> Grid { get; set; } = new List<Sq>();
 
-        public string ColumnStrings { get; set; }
+        private readonly ILogger<LeftSideModel> _logger;
 
-        public void DefColumnStrings()
-        {
-            int TMPW = Grid.Last().width + 1;
-
-            string ToReturn = "";
-
-            for(int inx = 0; inx < TMPW; inx++)
-            {
-                ToReturn += " auto";
-            }
-
-            ColumnStrings = ToReturn;
-        }
-
-        public string TString { get; set; } = "TestString";
-
-        private readonly ILogger<IndexModel> _logger;
-
-        public IndexModel(ILogger<IndexModel> logger)
+        public LeftSideModel(ILogger<LeftSideModel> logger)
         {
             _logger = logger;
-        }
-
-        public IActionResult OnGet()
-        {
-            //GetTestVals();
-
-            Console.WriteLine("Getting");
-
-            LoadGrid();
-
-            DefColumnStrings();
-
-            return Page();
         }
 
         //public IActionResult OnPost()
@@ -75,18 +43,6 @@ namespace InventoryManagementGrid.Index
 
             //GetTestVals();
 
-            return RedirectToPage();
-        }
-
-        public void LoadGrid()
-        {
-            InvGridDbContext _InvGridDbContext = (InvGridDbContext)HttpContext.RequestServices.GetService(typeof(InvGridDbContext));
-
-            Controllers.GridController GridController = new();
-
-            //GridController.MakeGrid(_InvGridDbContext.GetConnection(), 10);
-
-            Grid = GridController.GetGrid(_InvGridDbContext.GetConnection());
         }
 
         public void GetTestVals()
