@@ -1,59 +1,59 @@
-﻿using InventoryManagementGrid.DBContext;
-using InventoryManagementGrid.Models;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿//using InventoryManagementGrid.DBContext;
+//using InventoryManagementGrid.Models;
+//using Microsoft.AspNetCore.Http;
+//using Microsoft.AspNetCore.Mvc;
+//using Microsoft.AspNetCore.Mvc.RazorPages;
+//using Microsoft.Extensions.Logging;
+//using System;
+//using System.Collections.Generic;
+//using System.Linq;
+//using System.Threading.Tasks;
 
-namespace InventoryManagementGrid.LeftSide
-{
-    public class LeftSideModel : PartialViewResult
-    {
-        [BindProperty]
-        public List<t_table> TList { get; set; }
-        [BindProperty]
-        public string Inpstring { get; set; }
-        [BindProperty]
+//namespace InventoryManagementGrid.LeftSide
+//{
+//    public class LeftSideModel : PageModel
+//    {
+//        [BindProperty]
+//        public List<t_table> TList { get; set; }
+//        [BindProperty]
+//        public string Inpstring { get; set; }
+//        [BindProperty]
 
-        private readonly ILogger<LeftSideModel> _logger;
+//        private readonly ILogger<LeftSideModel> _logger;
 
-        public LeftSideModel(ILogger<LeftSideModel> logger)
-        {
-            _logger = logger;
-        }
+//        public LeftSideModel(ILogger<LeftSideModel> logger)
+//        {
+//            _logger = logger;
+//        }
 
-        //public IActionResult OnPost()
-        //{
-        //    Inpstring = Request.Form["Inpstring"];
+//        //public IActionResult OnPost()
+//        //{
+//        //    Inpstring = Request.Form["Inpstring"];
 
-        //    @ViewData["InpString"] = Inpstring;
+//        //    @ViewData["InpString"] = Inpstring;
 
-        //    GetTestVals();
+//        //    GetTestVals();
 
-        //    return Page();
-        //}
+//        //    return Page();
+//        //}
 
-        public object Dothing()
-        {
-            Console.WriteLine("Dothing: " + Inpstring);
+//        public object Dothing()
+//        {
+//            Console.WriteLine("Dothing: " + Inpstring);
 
-            //GetTestVals();
+//            //GetTestVals();
 
-        }
+//        }
 
-        public void GetTestVals()
-        {
-            InvGridDbContext _InvGridDbContext = (InvGridDbContext)HttpContext.RequestServices.GetService(typeof(InvGridDbContext));
+//        public void GetTestVals()
+//        {
+//            InvGridDbContext _InvGridDbContext = (InvGridDbContext)HttpContext.RequestServices.GetService(typeof(InvGridDbContext));
 
-            Controllers.HomeController HomeController = new();
+//            Controllers.HomeController HomeController = new();
 
-            HomeController.PutTTable(_InvGridDbContext.GetConnection(), Inpstring);
+//            HomeController.PutTTable(_InvGridDbContext.GetConnection(), Inpstring);
 
-            TList = HomeController.GetTTable(_InvGridDbContext.GetConnection());
-        }
-    }
-}
+//            TList = HomeController.GetTTable(_InvGridDbContext.GetConnection());
+//        }
+//    }
+//}

@@ -3,8 +3,10 @@
     ViewData["Title"] = "Home page";
 }
 <div>
-    <form method="post">
+    <form>
         <input id="inpstring" asp-for="Inpstring" type="text" name="Inpstring" />
-        <input type="submit" value="Submit" onclick=@Model.Dothing() />
+        <button name="button" type="submit" value="Submit" asp-action="Dothing" />
     </form>
 </div>
+
+@*onclick=@Model.Dothing()*@

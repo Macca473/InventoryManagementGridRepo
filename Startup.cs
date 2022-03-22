@@ -37,12 +37,12 @@ namespace InventoryManagementGrid
 
             services.Add(new ServiceDescriptor(typeof(InvGridDbContext), new InvGridDbContext(Configuration.GetConnectionString("InvGridDbContext"))));
 
-            services.AddMvc()
-                .AddRazorPagesOptions(options =>
-                {
-                    //options.AllowAreas = true;
-                    options.Conventions.AddAreaPageRoute("Index", "/Index", "./Index");
-                });
+            //services.AddMvc()
+            //    .AddRazorPagesOptions(options =>
+            //    {
+            //        //options.AllowAreas = true;
+            //        options.Conventions.AddAreaPageRoute("Index", "/Index", "./Index");
+            //    });
 
             //services.AddTransient<InvGridDbContext>(x => new InvGridDbContext(Configuration.GetConnectionString("InvGridDbContext")));
 

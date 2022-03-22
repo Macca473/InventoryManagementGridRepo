@@ -75,8 +75,17 @@ namespace InventoryManagementGrid.Index
 
             //GetTestVals();
 
-            return RedirectToPage();
+            return null;
+
+            //return RedirectToPage();
         }
+
+        //public IActionResult Dothing()
+        //{
+
+
+        //    return Page();
+        //}
 
         public void LoadGrid()
         {
